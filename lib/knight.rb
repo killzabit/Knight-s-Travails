@@ -1,72 +1,39 @@
 require './lib/chess_board.rb'
+require './lib/move_finder.rb'
+
 
 # frozen_string_literal:true
+
+# represents the knight piece, uses move_finder.rb to find the moves
+# that the knight can currently make.
 
 class Knight
   attr_reader :chess_board
   attr_accessor :knight_position, :possible_moves
 
   def initialize
-    @knight_position = [3, 1]
+    @knight_position = [3, 3]
     @chess_board = Chess_Board.new
-    @possible_moves = []
+    @move_finder = MoveFinder.new @knight_position
   end
 
-  def find_all_moves
-    @possible_moves.clear
-    find_up_moves
-    find_down_moves
-    find_left_moves
-    find_right_moves
+  def generate_move_list
+    @move_finder.find_all_moves
   end
 
-  def clean_possible_moves
-    @possible_moves.select! { |a| a.all? { |i| !i.negative?}}
+  def move_knight
+    @knight_position = @move_finder.possible_moves.sample
+    @move_finder.piece_position = @knight_position
+    @move_finder.find_all_moves
+    show_moves_list
+    @knight_position
   end
 
-  def find_left_moves
-    a = @knight_position.dup
-    a[0] -= 2
-    a[1] += 1
-    @possible_moves << a
-    a = @knight_position.dup
-    a[0] -= 2
-    a[1] -= 1
-    @possible_moves << a
+  def show_moves_list
+    print @move_finder.possible_moves
   end
 
-  def find_right_moves
-    a = @knight_position.dup
-    a[0] += 2
-    a[1] += 1
-    @possible_moves << a
-    a = @knight_position.dup
-    a[0] += 2
-    a[1] -= 1
-    @possible_moves << a
-  end
-
-  def find_down_moves
-    a = @knight_position.dup
-    a[1] -= 2
-    a[0] += 1
-    @possible_moves << a
-    a = @knight_position.dup
-    a[1] -= 2
-    a[0] -= 1
-    @possible_moves << a
-  end
-
-  def find_up_moves
-    a = @knight_position.dup
-    a[1] += 2
-    a[0] += 1
-    @possible_moves << a
-    a = @knight_position.dup
-    a[1] += 2
-    a[0] -= 1
-    @possible_moves << a
-  end
+ 
 
   
   
