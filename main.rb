@@ -1,9 +1,7 @@
-require './lib/chess_board.rb'
-require './lib/knight.rb'
+require './lib/game.rb'
 
 # frozen_string_literal:true
 
-k = Knight.new
-
-
-
+g = Game.new
+g.welcome
+g.run
