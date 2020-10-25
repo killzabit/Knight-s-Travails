@@ -1,27 +1,24 @@
+# frozen_string_literal:true
+
 require './lib/node.rb'
 require './lib/move_finder.rb'
 require './lib/graph_traverser.rb'
 
-
-# frozen_string_literal:true
-
 # creates a graph using the array of moves created by move_finder
 # the coords_array is used to make the array of vertices and then
 # start_destination() finds the nodes for the start and destination
-
-
-class Graph_Builder
+class GraphBuilder
   attr_accessor :vertices_array, :move_finder, :sorted_coords, :possible_moves, :start, :destination
 
   def initialize(start, destination)
     @sorted_coords = coords_array.sort
-    @move_finder = Move_Finder.new
+    @move_finder = MoveFinder.new
     @vertices_array = []
     @possible_moves = []
     @edges = []
     @start = start
     @destination = destination
-    @traverser = Graph_Traverser.new
+    @traverser = GraphTraverser.new
   end
 
   def coords_array
@@ -70,11 +67,9 @@ class Graph_Builder
   def adj_nodes_list(node)
     @possible_moves = @move_finder.find_all_moves(node.data)
     possible_moves_to_nodes
-    x = 0
     while !@edges.empty?
-      node.add_node(@edges[x]) unless @edges[x].nil?
+      node.add_node(@edges[0]) unless @edges[0].nil?
       @edges.shift
-      x += 1
     end
   end
 
@@ -92,7 +87,7 @@ class Graph_Builder
   def find_node(arr, value, start = 0, endarr = arr.length - 1)
     mid = (start + endarr) / 2
     if start > endarr
-      puts "This node does not exist"
+      puts "This node does not exist \n "
     else
       case value <=> arr[mid].data
       when -1

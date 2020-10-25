@@ -1,7 +1,6 @@
 # frozen_string_literal:true
 
 # represents the knight piece, gets destination but has a default start value   # that can be updated
-
 class Knight
   attr_accessor :knight_position, :destination, :reportable_position, :reportable_destination
 
@@ -19,17 +18,16 @@ class Knight
 
   def report_position_destination
     position_converter
-    puts "Current knight position is : #{@reportable_position.join}"
-    puts "Destination set to: #{@reportable_destination}"
+    puts "Current knight position is : #{@reportable_position.join} \n "
+    puts "Destination set to: #{@reportable_destination} \n "
   end
 
   private
 
   def ask_destination
-    puts "Where would you like to move to? \n"
-    puts 'You must use this format to choose a new destination, ex: a1, ex: f4'
+    puts 'Where would you like to move to?'
+    puts "You must use this format to choose a new destination, ex: a1 \n "
     @reportable_destination = gets.chomp
-    puts "d4 is the starting point!" if @reportable_position == 'd4'
     ask_destination_error
   end
 
@@ -57,7 +55,7 @@ class Knight
   end
 
   def destination_converter
-    @destination = @reportable_destination.split //
+    @destination = @reportable_destination.split(//)
     case @destination[0]
     when 'a'
       @destination[0] = 0
@@ -81,9 +79,12 @@ class Knight
   end
 
   def ask_destination_error
-    a = @reportable_destination.split //
-    if (!('a'..'h').include? a[0]) || (!('1'..'8').include? a[1]) || a.length != 2 
-      puts "Incorrect format used, must follow format\n"
+    a = @reportable_destination.split(//)
+    if (!('a'..'h').include? a[0]) || (!('1'..'8').include? a[1])
+      puts "Incorrect format used, must follow format. \n "
+      ask_destination
+    elsif @reportable_destination == 'd4'
+      puts "d4 is the starting point! \n "
       ask_destination
     end
   end

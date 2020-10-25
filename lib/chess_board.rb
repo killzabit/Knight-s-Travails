@@ -1,8 +1,7 @@
 # frozen_string_literal:true
 
 # this is the chess board display
-
-class Chess_Board
+class ChessBoard
   def initialize
     @green = "\e[48;5;28m    \e[0m"
     @grey = "\e[48;5;243m    \e[0m"
@@ -10,6 +9,7 @@ class Chess_Board
 
   def display
     puts <<-HEREDOC
+
             #{@green}#{@grey}#{@green}#{@grey}#{@green}#{@grey}#{@green}#{@grey}
           8 #{@green}#{@grey}#{@green}#{@grey}#{@green}#{@grey}#{@green}#{@grey}
             #{@grey}#{@green}#{@grey}#{@green}#{@grey}#{@green}#{@grey}#{@green}

@@ -2,8 +2,7 @@
 # can traverse graph and print out the path taken to destination node
 # find_steps walk through BFS style to find how long it took to get to dest.
 # find_path fills in the path array so path_print can print it to screen
-
-class Graph_Traverser
+class GraphTraverser
   attr_accessor :start, :destination
   def initialize
     @start
@@ -16,15 +15,14 @@ class Graph_Traverser
   def find_steps
     q = []
     q << @start
-     vis = []
+    vis = []
     steps = 0
     while !q.empty?
-      currnet_node = q[0]
-      if currnet_node == @destination
-        vis << @destination
+      current_node = q[0]
+      if current_node == @destination
         steps += 1
         break
-      elsif currnet_node == 'step'
+      elsif current_node == 'step'
         steps += 1
         q.shift
       else
@@ -39,7 +37,7 @@ class Graph_Traverser
         q.shift
       end
     end
-    puts "Made it in #{steps} steps.\n"
+    puts "Made it in #{steps} steps. \n "
   end
 
   # d_pos is destination position, would have to change find_node
@@ -91,16 +89,16 @@ class Graph_Traverser
   end
 
   def path_print
-    x = ""
+    x = ''
     @path = @path.reverse
     @path.each do |i|
       i = i.join
       if i == 'd4'
-        x << "#{i} >>"
-      elsif i == @path[-1]
-        x << "#{i}\n"
+        x << "#{i} >> "
+      elsif i == @path[-1].join
+        x << "#{i} \n "
       else
-        x << "#{i} >> " 
+        x << "#{i} >> "
       end
     end
     puts x

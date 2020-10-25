@@ -2,12 +2,11 @@
 
 # finds moves of knight, can be refactored to find moves of any piece
 # takes the piece and an array in which to store all possible moves
-
-class Move_Finder
+class MoveFinder
   attr_accessor :possible_moves, :position
-  def initialize()
+  def initialize
     @position
-    @possible_moves = []  
+    @possible_moves = []
   end
 
   def find_all_moves(position)
@@ -22,8 +21,8 @@ class Move_Finder
   end
 
   def clean_possible_moves
-    @possible_moves.select! { |a| a.all? { |i| !i.negative?}}
-    @possible_moves.select! { |a| a.all? { |i| !(i > 7)}}
+    @possible_moves.select! { |a| a.all? { |i| !i.negative? } }
+    @possible_moves.select! { |a| a.all? { |i| !(i > 7) } }
   end
 
   def find_left_moves

@@ -1,6 +1,6 @@
-require './lib/game.rb'
-
 # frozen_string_literal:true
+
+require './lib/game.rb'
 
 g = Game.new
 g.welcome

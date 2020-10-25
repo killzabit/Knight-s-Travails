@@ -1,7 +1,6 @@
 # frozen_string_literal:true
 
 # node class, adj_nodes is similar to adjancency list.
-
 class Node
   attr_accessor :data, :adj_nodes
 
